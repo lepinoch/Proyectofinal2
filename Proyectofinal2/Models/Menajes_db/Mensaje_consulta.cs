@@ -18,5 +18,8 @@ namespace Proyectofinal2.Models.Menajes_db
         public string Motivo { get; set; }
         public string Estado { get; set; }
         public string Mensaje { get; set; }
+        public string Rut { get; set; }
+    
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

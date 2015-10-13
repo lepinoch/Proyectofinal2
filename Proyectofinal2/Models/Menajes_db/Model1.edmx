@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MenajedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MenajedbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banco_menaje">
           <Key>
             <PropertyRef Name="Num_cuenta" />
@@ -18,17 +18,18 @@
           <Key>
             <PropertyRef Name="Id_carrito" />
           </Key>
-          <Property Name="Id_carrito" Type="int" Nullable="false" />
+          <Property Name="Id_carrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Valor_neto" Type="int" />
           <Property Name="Descuento" Type="int" />
           <Property Name="Cantidad" Type="int" />
           <Property Name="Subtotal" Type="int" />
+          <Property Name="Id_ventas" Type="int" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="Id_categoria" />
           </Key>
-          <Property Name="Id_categoria" Type="int" Nullable="false" />
+          <Property Name="Id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre_categoria" Type="varchar" MaxLength="50" />
           <Property Name="Tipo" Type="varchar" MaxLength="50" />
           <Property Name="Cantidad" Type="int" />
@@ -37,22 +38,25 @@
           <Key>
             <PropertyRef Name="Cod_deposito" />
           </Key>
-          <Property Name="Cod_deposito" Type="int" Nullable="false" />
+          <Property Name="Cod_deposito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num_cuenta" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Despacho">
           <Key>
             <PropertyRef Name="Num_seguimiento" />
           </Key>
-          <Property Name="Num_seguimiento" Type="int" Nullable="false" />
+          <Property Name="Num_seguimiento" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
           <Property Name="Fecha_envio" Type="varchar" MaxLength="50" />
           <Property Name="Fecha_entrega" Type="varbinary" MaxLength="50" />
+          <Property Name="Id_ventas" Type="int" />
+          <Property Name="Id_direccion" Type="int" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
             <PropertyRef Name="Id_direccion" />
           </Key>
-          <Property Name="Id_direccion" Type="int" Nullable="false" />
+          <Property Name="Id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Calle" Type="varchar" MaxLength="50" />
           <Property Name="Numero" Type="int" />
           <Property Name="Comuna" Type="varchar" MaxLength="50" />
@@ -60,54 +64,61 @@
           <Property Name="Cod_postal" Type="varchar" MaxLength="50" />
           <Property Name="Num_departamento" Type="int" />
         </EntityType>
+        <EntityType Name="Empresa_cliente">
+          <Key>
+            <PropertyRef Name="Id_empresacliente" />
+          </Key>
+          <Property Name="Id_empresacliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Giro" Type="varchar" MaxLength="50" />
+          <Property Name="Contacto_empresa" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Mensaje_consulta">
           <Key>
             <PropertyRef Name="Id_contacto" />
           </Key>
-          <Property Name="Id_contacto" Type="int" Nullable="false" />
+          <Property Name="Id_contacto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Motivo" Type="varchar" MaxLength="50" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
           <Property Name="Mensaje" Type="varchar" MaxLength="50" />
+          <Property Name="Rut" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Metodo_pago">
           <Key>
             <PropertyRef Name="Id_metodo_pago" />
           </Key>
-          <Property Name="Id_metodo_pago" Type="int" Nullable="false" />
+          <Property Name="Id_metodo_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Tipo" Type="varchar" MaxLength="50" />
+          <Property Name="Id_carrito" Type="int" />
+          <Property Name="Cod_deposito" Type="int" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id_producto" />
           </Key>
-          <Property Name="Id_producto" Type="int" Nullable="false" />
+          <Property Name="Id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Imagen" Type="image" />
           <Property Name="Descripcion" Type="varchar" MaxLength="250" />
           <Property Name="Stock" Type="int" />
           <Property Name="Precio" Type="int" />
+          <Property Name="Id_subcategoria" Type="int" />
+          <Property Name="Id_carrito" Type="int" />
         </EntityType>
         <EntityType Name="Subcategoria">
           <Key>
             <PropertyRef Name="Id_subcategoria" />
           </Key>
-          <Property Name="Id_subcategoria" Type="int" Nullable="false" />
+          <Property Name="Id_subcategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cantidad" Type="int" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_categoria" Type="int" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Rut" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Rut" Type="varchar" MaxLength="50" />
+          <Property Name="Rut" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -115,15 +126,161 @@
           <Property Name="Usuario" Type="varchar" MaxLength="50" />
           <Property Name="Contrasena" Type="varchar" MaxLength="50" />
           <Property Name="Tipo" Type="varchar" MaxLength="50" />
+          <Property Name="Id_empresacliente" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
             <PropertyRef Name="Id_ventas" />
           </Key>
-          <Property Name="Id_ventas" Type="int" Nullable="false" />
+          <Property Name="Id_ventas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" />
           <Property Name="Total" Type="int" />
+          <Property Name="Rut" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Carrito_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_ventas" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="Id_ventas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Debito_Bancomenaje">
+          <End Role="Banco_menaje" Type="Self.Banco_menaje" Multiplicity="0..1" />
+          <End Role="Debito" Type="Self.Debito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco_menaje">
+              <PropertyRef Name="Num_cuenta" />
+            </Principal>
+            <Dependent Role="Debito">
+              <PropertyRef Name="Num_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despacho_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+          <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="Id_direccion" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="Id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despacho_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_ventas" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="Id_ventas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_consulta_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Mensaje_consulta" Type="Self.Mensaje_consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Mensaje_consulta">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_metodopago_Carrito">
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="0..1" />
+          <End Role="Metodo_pago" Type="Self.Metodo_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="Id_carrito" />
+            </Principal>
+            <Dependent Role="Metodo_pago">
+              <PropertyRef Name="Id_carrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_metodopago_Debito">
+          <End Role="Debito" Type="Self.Debito" Multiplicity="0..1" />
+          <End Role="Metodo_pago" Type="Self.Metodo_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Debito">
+              <PropertyRef Name="Cod_deposito" />
+            </Principal>
+            <Dependent Role="Metodo_pago">
+              <PropertyRef Name="Cod_deposito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Carrito">
+          <End Role="Carrito" Type="Self.Carrito" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="Id_carrito" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Id_carrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Subcategoria">
+          <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="0..1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategoria">
+              <PropertyRef Name="Id_subcategoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Id_subcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategoria_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id_categoria" />
+            </Principal>
+            <Dependent Role="Subcategoria">
+              <PropertyRef Name="Id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Empresacliente">
+          <End Role="Empresa_cliente" Type="Self.Empresa_cliente" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa_cliente">
+              <PropertyRef Name="Id_empresacliente" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Id_empresacliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MenajedbModelStoreContainer">
           <EntitySet Name="Banco_menaje" EntityType="Self.Banco_menaje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
@@ -131,122 +288,261 @@
           <EntitySet Name="Debito" EntityType="Self.Debito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Despacho" EntityType="Self.Despacho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa_cliente" EntityType="Self.Empresa_cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mensaje_consulta" EntityType="Self.Mensaje_consulta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Metodo_pago" EntityType="Self.Metodo_pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subcategoria" EntityType="Self.Subcategoria" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Carrito_Ventas" Association="Self.FK_Carrito_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Debito_Bancomenaje" Association="Self.FK_Debito_Bancomenaje">
+            <End Role="Banco_menaje" EntitySet="Banco_menaje" />
+            <End Role="Debito" EntitySet="Debito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despacho_Direccion" Association="Self.FK_Despacho_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despacho_Ventas" Association="Self.FK_Despacho_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_consulta_Usuarios" Association="Self.FK_Mensaje_consulta_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_metodopago_Carrito" Association="Self.FK_metodopago_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_metodopago_Debito" Association="Self.FK_metodopago_Debito">
+            <End Role="Debito" EntitySet="Debito" />
+            <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Carrito" Association="Self.FK_Producto_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Subcategoria" Association="Self.FK_Producto_Subcategoria">
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategoria_Categoria" Association="Self.FK_Subcategoria_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Empresacliente" Association="Self.FK_Usuarios_Empresacliente">
+            <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MenajedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MenajedbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Banco_menaje" EntityType="MenajedbModel.Banco_menaje" />
+          <EntitySet Name="Carrito" EntityType="MenajedbModel.Carrito" />
+          <EntitySet Name="Categoria" EntityType="MenajedbModel.Categoria" />
+          <EntitySet Name="Debito" EntityType="MenajedbModel.Debito" />
+          <EntitySet Name="Despacho" EntityType="MenajedbModel.Despacho" />
+          <EntitySet Name="Direccion" EntityType="MenajedbModel.Direccion" />
+          <EntitySet Name="Empresa_cliente" EntityType="MenajedbModel.Empresa_cliente" />
+          <EntitySet Name="Mensaje_consulta" EntityType="MenajedbModel.Mensaje_consulta" />
+          <EntitySet Name="Metodo_pago" EntityType="MenajedbModel.Metodo_pago" />
+          <EntitySet Name="Producto" EntityType="MenajedbModel.Producto" />
+          <EntitySet Name="Subcategoria" EntityType="MenajedbModel.Subcategoria" />
+          <EntitySet Name="Usuarios" EntityType="MenajedbModel.Usuarios" />
+          <EntitySet Name="Ventas" EntityType="MenajedbModel.Ventas" />
+          <AssociationSet Name="FK_Debito_Bancomenaje" Association="MenajedbModel.FK_Debito_Bancomenaje">
+            <End Role="Banco_menaje" EntitySet="Banco_menaje" />
+            <End Role="Debito" EntitySet="Debito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carrito_Ventas" Association="MenajedbModel.FK_Carrito_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Carrito" EntitySet="Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_metodopago_Carrito" Association="MenajedbModel.FK_metodopago_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Carrito" Association="MenajedbModel.FK_Producto_Carrito">
+            <End Role="Carrito" EntitySet="Carrito" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategoria_Categoria" Association="MenajedbModel.FK_Subcategoria_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_metodopago_Debito" Association="MenajedbModel.FK_metodopago_Debito">
+            <End Role="Debito" EntitySet="Debito" />
+            <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despacho_Direccion" Association="MenajedbModel.FK_Despacho_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despacho_Ventas" Association="MenajedbModel.FK_Despacho_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Empresacliente" Association="MenajedbModel.FK_Usuarios_Empresacliente">
+            <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensaje_consulta_Usuarios" Association="MenajedbModel.FK_Mensaje_consulta_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Subcategoria" Association="MenajedbModel.FK_Producto_Subcategoria">
+            <End Role="Subcategoria" EntitySet="Subcategoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_Usuarios" Association="MenajedbModel.FK_Ventas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Banco_menaje">
           <Key>
             <PropertyRef Name="Num_cuenta" />
           </Key>
-          <Property Name="Num_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Num_cuenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nom_banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tipo_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre_titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Debito" Relationship="MenajedbModel.FK_Debito_Bancomenaje" FromRole="Banco_menaje" ToRole="Debito" />
         </EntityType>
         <EntityType Name="Carrito">
           <Key>
             <PropertyRef Name="Id_carrito" />
           </Key>
-          <Property Name="Id_carrito" Type="Int32" Nullable="false" />
+          <Property Name="Id_carrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Valor_neto" Type="Int32" />
           <Property Name="Descuento" Type="Int32" />
           <Property Name="Cantidad" Type="Int32" />
           <Property Name="Subtotal" Type="Int32" />
+          <Property Name="Id_ventas" Type="Int32" />
+          <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Carrito_Ventas" FromRole="Carrito" ToRole="Ventas" />
+          <NavigationProperty Name="Metodo_pago" Relationship="MenajedbModel.FK_metodopago_Carrito" FromRole="Carrito" ToRole="Metodo_pago" />
+          <NavigationProperty Name="Producto" Relationship="MenajedbModel.FK_Producto_Carrito" FromRole="Carrito" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="Id_categoria" />
           </Key>
-          <Property Name="Id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="Id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Categoria" ToRole="Subcategoria" />
         </EntityType>
         <EntityType Name="Debito">
           <Key>
             <PropertyRef Name="Cod_deposito" />
           </Key>
-          <Property Name="Cod_deposito" Type="Int32" Nullable="false" />
+          <Property Name="Cod_deposito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Banco_menaje" Relationship="MenajedbModel.FK_Debito_Bancomenaje" FromRole="Debito" ToRole="Banco_menaje" />
+          <NavigationProperty Name="Metodo_pago" Relationship="MenajedbModel.FK_metodopago_Debito" FromRole="Debito" ToRole="Metodo_pago" />
         </EntityType>
         <EntityType Name="Despacho">
           <Key>
             <PropertyRef Name="Num_seguimiento" />
           </Key>
-          <Property Name="Num_seguimiento" Type="Int32" Nullable="false" />
+          <Property Name="Num_seguimiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Fecha_envio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Fecha_entrega" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Id_ventas" Type="Int32" />
+          <Property Name="Id_direccion" Type="Int32" />
+          <NavigationProperty Name="Direccion" Relationship="MenajedbModel.FK_Despacho_Direccion" FromRole="Despacho" ToRole="Direccion" />
+          <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Despacho_Ventas" FromRole="Despacho" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
             <PropertyRef Name="Id_direccion" />
           </Key>
-          <Property Name="Id_direccion" Type="Int32" Nullable="false" />
+          <Property Name="Id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Numero" Type="Int32" />
           <Property Name="Comuna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cod_postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Num_departamento" Type="Int32" />
+          <NavigationProperty Name="Despacho" Relationship="MenajedbModel.FK_Despacho_Direccion" FromRole="Direccion" ToRole="Despacho" />
+        </EntityType>
+        <EntityType Name="Empresa_cliente">
+          <Key>
+            <PropertyRef Name="Id_empresacliente" />
+          </Key>
+          <Property Name="Id_empresacliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Giro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contacto_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Empresa_cliente" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Mensaje_consulta">
           <Key>
             <PropertyRef Name="Id_contacto" />
           </Key>
-          <Property Name="Id_contacto" Type="Int32" Nullable="false" />
+          <Property Name="Id_contacto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Mensaje_consulta" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Metodo_pago">
           <Key>
             <PropertyRef Name="Id_metodo_pago" />
           </Key>
-          <Property Name="Id_metodo_pago" Type="Int32" Nullable="false" />
+          <Property Name="Id_metodo_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_carrito" Type="Int32" />
+          <Property Name="Cod_deposito" Type="Int32" />
+          <NavigationProperty Name="Carrito" Relationship="MenajedbModel.FK_metodopago_Carrito" FromRole="Metodo_pago" ToRole="Carrito" />
+          <NavigationProperty Name="Debito" Relationship="MenajedbModel.FK_metodopago_Debito" FromRole="Metodo_pago" ToRole="Debito" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id_producto" />
           </Key>
-          <Property Name="Id_producto" Type="Int32" Nullable="false" />
+          <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Stock" Type="Int32" />
           <Property Name="Precio" Type="Int32" />
+          <Property Name="Id_subcategoria" Type="Int32" />
+          <Property Name="Id_carrito" Type="Int32" />
+          <NavigationProperty Name="Carrito" Relationship="MenajedbModel.FK_Producto_Carrito" FromRole="Producto" ToRole="Carrito" />
+          <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Producto" ToRole="Subcategoria" />
         </EntityType>
         <EntityType Name="Subcategoria">
           <Key>
             <PropertyRef Name="Id_subcategoria" />
           </Key>
-          <Property Name="Id_subcategoria" Type="Int32" Nullable="false" />
+          <Property Name="Id_subcategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cantidad" Type="Int32" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Table">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_categoria" Type="Int32" />
+          <NavigationProperty Name="Categoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Subcategoria" ToRole="Categoria" />
+          <NavigationProperty Name="Producto" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Subcategoria" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Rut" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rut" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -254,31 +550,168 @@
           <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_empresacliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresa_cliente" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Usuarios" ToRole="Empresa_cliente" />
+          <NavigationProperty Name="Mensaje_consulta" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Usuarios" ToRole="Mensaje_consulta" />
+          <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
             <PropertyRef Name="Id_ventas" />
           </Key>
-          <Property Name="Id_ventas" Type="Int32" Nullable="false" />
+          <Property Name="Id_ventas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fecha" Type="DateTime" Precision="0" />
           <Property Name="Total" Type="Int32" />
+          <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Carrito" Relationship="MenajedbModel.FK_Carrito_Ventas" FromRole="Ventas" ToRole="Carrito" />
+          <NavigationProperty Name="Despacho" Relationship="MenajedbModel.FK_Despacho_Ventas" FromRole="Ventas" ToRole="Despacho" />
+          <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
         </EntityType>
-        <EntityContainer Name="MenajedbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Banco_menaje" EntityType="Self.Banco_menaje" />
-          <EntitySet Name="Carrito" EntityType="Self.Carrito" />
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Debito" EntityType="Self.Debito" />
-          <EntitySet Name="Despacho" EntityType="Self.Despacho" />
-          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
-          <EntitySet Name="Mensaje_consulta" EntityType="Self.Mensaje_consulta" />
-          <EntitySet Name="Metodo_pago" EntityType="Self.Metodo_pago" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="Subcategoria" EntityType="Self.Subcategoria" />
-          <EntitySet Name="Table" EntityType="Self.Table" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
-          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_Debito_Bancomenaje">
+          <End Type="MenajedbModel.Banco_menaje" Role="Banco_menaje" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Debito" Role="Debito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banco_menaje">
+              <PropertyRef Name="Num_cuenta" />
+            </Principal>
+            <Dependent Role="Debito">
+              <PropertyRef Name="Num_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carrito_Ventas">
+          <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Carrito" Role="Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_ventas" />
+            </Principal>
+            <Dependent Role="Carrito">
+              <PropertyRef Name="Id_ventas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_metodopago_Carrito">
+          <End Type="MenajedbModel.Carrito" Role="Carrito" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Metodo_pago" Role="Metodo_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="Id_carrito" />
+            </Principal>
+            <Dependent Role="Metodo_pago">
+              <PropertyRef Name="Id_carrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Carrito">
+          <End Type="MenajedbModel.Carrito" Role="Carrito" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrito">
+              <PropertyRef Name="Id_carrito" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Id_carrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategoria_Categoria">
+          <End Type="MenajedbModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id_categoria" />
+            </Principal>
+            <Dependent Role="Subcategoria">
+              <PropertyRef Name="Id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_metodopago_Debito">
+          <End Type="MenajedbModel.Debito" Role="Debito" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Metodo_pago" Role="Metodo_pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Debito">
+              <PropertyRef Name="Cod_deposito" />
+            </Principal>
+            <Dependent Role="Metodo_pago">
+              <PropertyRef Name="Cod_deposito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despacho_Direccion">
+          <End Type="MenajedbModel.Direccion" Role="Direccion" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Despacho" Role="Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="Id_direccion" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="Id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despacho_Ventas">
+          <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Despacho" Role="Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_ventas" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="Id_ventas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Empresacliente">
+          <End Type="MenajedbModel.Empresa_cliente" Role="Empresa_cliente" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa_cliente">
+              <PropertyRef Name="Id_empresacliente" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Id_empresacliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensaje_consulta_Usuarios">
+          <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Mensaje_consulta" Role="Mensaje_consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Mensaje_consulta">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Producto_Subcategoria">
+          <End Type="MenajedbModel.Subcategoria" Role="Subcategoria" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategoria">
+              <PropertyRef Name="Id_subcategoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="Id_subcategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_Usuarios">
+          <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -287,37 +720,39 @@
           <EntitySetMapping Name="Banco_menaje">
             <EntityTypeMapping TypeName="MenajedbModel.Banco_menaje">
               <MappingFragment StoreEntitySet="Banco_menaje">
-                <ScalarProperty Name="Num_cuenta" ColumnName="Num_cuenta" />
-                <ScalarProperty Name="Nom_banco" ColumnName="Nom_banco" />
-                <ScalarProperty Name="Tipo_cuenta" ColumnName="Tipo_cuenta" />
                 <ScalarProperty Name="Nombre_titular" ColumnName="Nombre_titular" />
+                <ScalarProperty Name="Tipo_cuenta" ColumnName="Tipo_cuenta" />
+                <ScalarProperty Name="Nom_banco" ColumnName="Nom_banco" />
+                <ScalarProperty Name="Num_cuenta" ColumnName="Num_cuenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Carrito">
             <EntityTypeMapping TypeName="MenajedbModel.Carrito">
               <MappingFragment StoreEntitySet="Carrito">
-                <ScalarProperty Name="Id_carrito" ColumnName="Id_carrito" />
-                <ScalarProperty Name="Valor_neto" ColumnName="Valor_neto" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id_ventas" ColumnName="Id_ventas" />
                 <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Valor_neto" ColumnName="Valor_neto" />
+                <ScalarProperty Name="Id_carrito" ColumnName="Id_carrito" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categoria">
             <EntityTypeMapping TypeName="MenajedbModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
-                <ScalarProperty Name="Nombre_categoria" ColumnName="Nombre_categoria" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre_categoria" ColumnName="Nombre_categoria" />
+                <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Debito">
             <EntityTypeMapping TypeName="MenajedbModel.Debito">
               <MappingFragment StoreEntitySet="Debito">
+                <ScalarProperty Name="Num_cuenta" ColumnName="Num_cuenta" />
                 <ScalarProperty Name="Cod_deposito" ColumnName="Cod_deposito" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -325,94 +760,105 @@
           <EntitySetMapping Name="Despacho">
             <EntityTypeMapping TypeName="MenajedbModel.Despacho">
               <MappingFragment StoreEntitySet="Despacho">
-                <ScalarProperty Name="Num_seguimiento" ColumnName="Num_seguimiento" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Fecha_envio" ColumnName="Fecha_envio" />
+                <ScalarProperty Name="Id_direccion" ColumnName="Id_direccion" />
+                <ScalarProperty Name="Id_ventas" ColumnName="Id_ventas" />
                 <ScalarProperty Name="Fecha_entrega" ColumnName="Fecha_entrega" />
+                <ScalarProperty Name="Fecha_envio" ColumnName="Fecha_envio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Num_seguimiento" ColumnName="Num_seguimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Direccion">
             <EntityTypeMapping TypeName="MenajedbModel.Direccion">
               <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="Id_direccion" ColumnName="Id_direccion" />
-                <ScalarProperty Name="Calle" ColumnName="Calle" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Cod_postal" ColumnName="Cod_postal" />
                 <ScalarProperty Name="Num_departamento" ColumnName="Num_departamento" />
+                <ScalarProperty Name="Cod_postal" ColumnName="Cod_postal" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Id_direccion" ColumnName="Id_direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa_cliente">
+            <EntityTypeMapping TypeName="MenajedbModel.Empresa_cliente">
+              <MappingFragment StoreEntitySet="Empresa_cliente">
+                <ScalarProperty Name="Contacto_empresa" ColumnName="Contacto_empresa" />
+                <ScalarProperty Name="Giro" ColumnName="Giro" />
+                <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mensaje_consulta">
             <EntityTypeMapping TypeName="MenajedbModel.Mensaje_consulta">
               <MappingFragment StoreEntitySet="Mensaje_consulta">
-                <ScalarProperty Name="Id_contacto" ColumnName="Id_contacto" />
-                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
                 <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Id_contacto" ColumnName="Id_contacto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Metodo_pago">
             <EntityTypeMapping TypeName="MenajedbModel.Metodo_pago">
               <MappingFragment StoreEntitySet="Metodo_pago">
-                <ScalarProperty Name="Id_metodo_pago" ColumnName="Id_metodo_pago" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cod_deposito" ColumnName="Cod_deposito" />
+                <ScalarProperty Name="Id_carrito" ColumnName="Id_carrito" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_metodo_pago" ColumnName="Id_metodo_pago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="MenajedbModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Id_carrito" ColumnName="Id_carrito" />
+                <ScalarProperty Name="Id_subcategoria" ColumnName="Id_subcategoria" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subcategoria">
             <EntityTypeMapping TypeName="MenajedbModel.Subcategoria">
               <MappingFragment StoreEntitySet="Subcategoria">
-                <ScalarProperty Name="Id_subcategoria" ColumnName="Id_subcategoria" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Table">
-            <EntityTypeMapping TypeName="MenajedbModel.Table">
-              <MappingFragment StoreEntitySet="Table">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id_subcategoria" ColumnName="Id_subcategoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="MenajedbModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Rut" ColumnName="Rut" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="MenajedbModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
-                <ScalarProperty Name="Id_ventas" ColumnName="Id_ventas" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_ventas" ColumnName="Id_ventas" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

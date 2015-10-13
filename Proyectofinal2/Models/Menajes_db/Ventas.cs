@@ -14,8 +14,19 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Ventas
     {
+        public Ventas()
+        {
+            this.Carrito = new HashSet<Carrito>();
+            this.Despacho = new HashSet<Despacho>();
+        }
+    
         public int Id_ventas { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Total { get; set; }
+        public string Rut { get; set; }
+    
+        public virtual ICollection<Carrito> Carrito { get; set; }
+        public virtual ICollection<Despacho> Despacho { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
     }
 }

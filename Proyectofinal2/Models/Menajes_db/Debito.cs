@@ -14,6 +14,15 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Debito
     {
+        public Debito()
+        {
+            this.Metodo_pago = new HashSet<Metodo_pago>();
+        }
+    
         public int Cod_deposito { get; set; }
+        public string Num_cuenta { get; set; }
+    
+        public virtual Banco_menaje Banco_menaje { get; set; }
+        public virtual ICollection<Metodo_pago> Metodo_pago { get; set; }
     }
 }

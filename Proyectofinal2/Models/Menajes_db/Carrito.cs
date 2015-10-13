@@ -14,10 +14,21 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Carrito
     {
+        public Carrito()
+        {
+            this.Metodo_pago = new HashSet<Metodo_pago>();
+            this.Producto = new HashSet<Producto>();
+        }
+    
         public int Id_carrito { get; set; }
         public Nullable<int> Valor_neto { get; set; }
         public Nullable<int> Descuento { get; set; }
         public Nullable<int> Cantidad { get; set; }
         public Nullable<int> Subtotal { get; set; }
+        public Nullable<int> Id_ventas { get; set; }
+    
+        public virtual Ventas Ventas { get; set; }
+        public virtual ICollection<Metodo_pago> Metodo_pago { get; set; }
+        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

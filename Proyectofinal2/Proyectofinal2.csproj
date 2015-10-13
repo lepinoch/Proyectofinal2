@@ -150,6 +150,9 @@
     <Compile Include="Models\Menajes_db\Direccion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Menajes_db\Empresa_cliente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Menajes_db\Mensaje_consulta.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -175,9 +178,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menajes_db\Subcategoria.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Menajes_db\Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menajes_db\Usuarios.cs">

@@ -17,5 +17,10 @@ namespace Proyectofinal2.Models.Menajes_db
         public int Id_metodo_pago { get; set; }
         public string Nombre { get; set; }
         public string Tipo { get; set; }
+        public Nullable<int> Id_carrito { get; set; }
+        public Nullable<int> Cod_deposito { get; set; }
+    
+        public virtual Carrito Carrito { get; set; }
+        public virtual Debito Debito { get; set; }
     }
 }

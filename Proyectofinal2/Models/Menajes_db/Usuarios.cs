@@ -14,7 +14,12 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Usuarios
     {
-        public int Id { get; set; }
+        public Usuarios()
+        {
+            this.Mensaje_consulta = new HashSet<Mensaje_consulta>();
+            this.Ventas = new HashSet<Ventas>();
+        }
+    
         public string Rut { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -23,5 +28,10 @@ namespace Proyectofinal2.Models.Menajes_db
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
         public string Tipo { get; set; }
+        public string Id_empresacliente { get; set; }
+    
+        public virtual Empresa_cliente Empresa_cliente { get; set; }
+        public virtual ICollection<Mensaje_consulta> Mensaje_consulta { get; set; }
+        public virtual ICollection<Ventas> Ventas { get; set; }
     }
 }

@@ -12,8 +12,17 @@ namespace Proyectofinal2.Models.Menajes_db
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class Empresa_cliente
     {
-        public int Id { get; set; }
+        public Empresa_cliente()
+        {
+            this.Usuarios = new HashSet<Usuarios>();
+        }
+    
+        public string Id_empresacliente { get; set; }
+        public string Giro { get; set; }
+        public string Contacto_empresa { get; set; }
+    
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Direccion
     {
+        public Direccion()
+        {
+            this.Despacho = new HashSet<Despacho>();
+        }
+    
         public int Id_direccion { get; set; }
         public string Calle { get; set; }
         public Nullable<int> Numero { get; set; }
@@ -21,5 +26,7 @@ namespace Proyectofinal2.Models.Menajes_db
         public string Ciudad { get; set; }
         public string Cod_postal { get; set; }
         public Nullable<int> Num_departamento { get; set; }
+    
+        public virtual ICollection<Despacho> Despacho { get; set; }
     }
 }

@@ -14,9 +14,14 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Despacho
     {
-        public int Num_seguimiento { get; set; }
+        public string Num_seguimiento { get; set; }
         public string Estado { get; set; }
         public string Fecha_envio { get; set; }
         public byte[] Fecha_entrega { get; set; }
+        public Nullable<int> Id_ventas { get; set; }
+        public Nullable<int> Id_direccion { get; set; }
+    
+        public virtual Direccion Direccion { get; set; }
+        public virtual Ventas Ventas { get; set; }
     }
 }

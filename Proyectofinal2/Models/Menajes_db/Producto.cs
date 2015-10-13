@@ -20,5 +20,10 @@ namespace Proyectofinal2.Models.Menajes_db
         public string Descripcion { get; set; }
         public Nullable<int> Stock { get; set; }
         public Nullable<int> Precio { get; set; }
+        public Nullable<int> Id_subcategoria { get; set; }
+        public Nullable<int> Id_carrito { get; set; }
+    
+        public virtual Carrito Carrito { get; set; }
+        public virtual Subcategoria Subcategoria { get; set; }
     }
 }
