@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MenajedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Banco_menaje">
+    <Key>
+      <PropertyRef Name="Num_cuenta" />
+    </Key>
+    <Property Name="Num_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nom_banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre_titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Carrito">
+    <Key>
+      <PropertyRef Name="Id_carrito" />
+    </Key>
+    <Property Name="Id_carrito" Type="Int32" Nullable="false" />
+    <Property Name="Valor_neto" Type="Int32" />
+    <Property Name="Descuento" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Subtotal" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id_categoria" />
+    </Key>
+    <Property Name="Id_categoria" Type="Int32" Nullable="false" />
+    <Property Name="Nombre_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Debito">
+    <Key>
+      <PropertyRef Name="Cod_deposito" />
+    </Key>
+    <Property Name="Cod_deposito" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Despacho">
+    <Key>
+      <PropertyRef Name="Num_seguimiento" />
+    </Key>
+    <Property Name="Num_seguimiento" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_envio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha_entrega" Type="Binary" MaxLength="50" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="Id_direccion" />
+    </Key>
+    <Property Name="Id_direccion" Type="Int32" Nullable="false" />
+    <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="Int32" />
+    <Property Name="Comuna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cod_postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Num_departamento" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Mensaje_consulta">
+    <Key>
+      <PropertyRef Name="Id_contacto" />
+    </Key>
+    <Property Name="Id_contacto" Type="Int32" Nullable="false" />
+    <Property Name="Motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Metodo_pago">
+    <Key>
+      <PropertyRef Name="Id_metodo_pago" />
+    </Key>
+    <Property Name="Id_metodo_pago" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id_producto" />
+    </Key>
+    <Property Name="Id_producto" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="Precio" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Subcategoria">
+    <Key>
+      <PropertyRef Name="Id_subcategoria" />
+    </Key>
+    <Property Name="Id_subcategoria" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="Id_ventas" />
+    </Key>
+    <Property Name="Id_ventas" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Precision="0" />
+    <Property Name="Total" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="MenajedbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Banco_menaje" EntityType="Self.Banco_menaje" />
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Debito" EntityType="Self.Debito" />
+    <EntitySet Name="Despacho" EntityType="Self.Despacho" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+    <EntitySet Name="Mensaje_consulta" EntityType="Self.Mensaje_consulta" />
+    <EntitySet Name="Metodo_pago" EntityType="Self.Metodo_pago" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Subcategoria" EntityType="Self.Subcategoria" />
+    <EntitySet Name="Table" EntityType="Self.Table" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+  </EntityContainer>
+</Schema>
