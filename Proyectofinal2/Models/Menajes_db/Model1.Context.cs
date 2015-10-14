@@ -25,18 +25,18 @@ namespace Proyectofinal2.Models.Menajes_db
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Empresa_cliente> Empresa_cliente { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Banco_menaje> Banco_menaje { get; set; }
         public DbSet<Carrito> Carrito { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Debito> Debito { get; set; }
         public DbSet<Despacho> Despacho { get; set; }
         public DbSet<Direccion> Direccion { get; set; }
-        public DbSet<Empresa_cliente> Empresa_cliente { get; set; }
         public DbSet<Mensaje_consulta> Mensaje_consulta { get; set; }
         public DbSet<Metodo_pago> Metodo_pago { get; set; }
         public DbSet<Producto> Producto { get; set; }
         public DbSet<Subcategoria> Subcategoria { get; set; }
-        public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<Ventas> Ventas { get; set; }
     }
 }

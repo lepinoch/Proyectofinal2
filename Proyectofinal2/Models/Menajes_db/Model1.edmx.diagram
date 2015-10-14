@@ -5,30 +5,28 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6d142ecd1b754faea33ddc282e8ad40b" Name="Diagram1">
-        <EntityTypeShape EntityType="MenajedbModel.Banco_menaje" Width="1.5" PointX="1.875" PointY="7.75" />
-        <EntityTypeShape EntityType="MenajedbModel.Carrito" Width="1.5" PointX="8.5" PointY="0.5" />
-        <EntityTypeShape EntityType="MenajedbModel.Categoria" Width="1.5" PointX="9" PointY="7.625" />
-        <EntityTypeShape EntityType="MenajedbModel.Debito" Width="1.5" PointX="6.125" PointY="7.875" />
-        <EntityTypeShape EntityType="MenajedbModel.Despacho" Width="1.5" PointX="10.875" PointY="4" />
-        <EntityTypeShape EntityType="MenajedbModel.Direccion" Width="1.5" PointX="4" PointY="4" />
-        <EntityTypeShape EntityType="MenajedbModel.Empresa_cliente" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="MenajedbModel.Mensaje_consulta" Width="1.5" PointX="4.75" PointY="0.625" />
-        <EntityTypeShape EntityType="MenajedbModel.Metodo_pago" Width="1.5" PointX="1.875" PointY="4.125" />
-        <EntityTypeShape EntityType="MenajedbModel.Producto" Width="1.5" PointX="8.625" PointY="3.75" />
-        <EntityTypeShape EntityType="MenajedbModel.Subcategoria" Width="1.5" PointX="12.25" PointY="7.625" />
-        <EntityTypeShape EntityType="MenajedbModel.Usuarios" Width="1.5" PointX="2.75" PointY="0.5" />
-        <EntityTypeShape EntityType="MenajedbModel.Ventas" Width="1.5" PointX="10.875" PointY="1.5" />
+        <EntityTypeShape EntityType="MenajedbModel.Empresa_cliente" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="MenajedbModel.Usuarios" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="MenajedbModel.FK_Usuarios_Empresacliente" />
+        <EntityTypeShape EntityType="MenajedbModel.Banco_menaje" Width="1.5" PointX="5.625" PointY="10.75" />
+        <EntityTypeShape EntityType="MenajedbModel.Carrito" Width="1.5" PointX="7.875" PointY="7.5" />
+        <EntityTypeShape EntityType="MenajedbModel.Categoria" Width="1.5" PointX="7.75" PointY="0.875" />
+        <EntityTypeShape EntityType="MenajedbModel.Debito" Width="1.5" PointX="7.875" PointY="10.875" />
+        <EntityTypeShape EntityType="MenajedbModel.Despacho" Width="1.5" PointX="7.875" PointY="4.5" />
+        <EntityTypeShape EntityType="MenajedbModel.Direccion" Width="1.5" PointX="5.625" PointY="1.5" />
+        <EntityTypeShape EntityType="MenajedbModel.Mensaje_consulta" Width="1.5" PointX="5.625" PointY="7.5" />
+        <EntityTypeShape EntityType="MenajedbModel.Metodo_pago" Width="1.5" PointX="10.125" PointY="7.625" />
+        <EntityTypeShape EntityType="MenajedbModel.Producto" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MenajedbModel.Subcategoria" Width="1.5" PointX="10" PointY="0.875" />
+        <EntityTypeShape EntityType="MenajedbModel.Ventas" Width="1.5" PointX="5.625" PointY="4.625" />
         <AssociationConnector Association="MenajedbModel.FK_Debito_Bancomenaje" />
         <AssociationConnector Association="MenajedbModel.FK_Carrito_Ventas" />
         <AssociationConnector Association="MenajedbModel.FK_metodopago_Carrito" />
-        <AssociationConnector Association="MenajedbModel.FK_Producto_Carrito" />
         <AssociationConnector Association="MenajedbModel.FK_Subcategoria_Categoria" />
         <AssociationConnector Association="MenajedbModel.FK_metodopago_Debito" />
         <AssociationConnector Association="MenajedbModel.FK_Despacho_Direccion" />
         <AssociationConnector Association="MenajedbModel.FK_Despacho_Ventas" />
-        <AssociationConnector Association="MenajedbModel.FK_Usuarios_Empresacliente" />
         <AssociationConnector Association="MenajedbModel.FK_Mensaje_consulta_Usuarios" />
-        <AssociationConnector Association="MenajedbModel.FK_Producto_Subcategoria" />
         <AssociationConnector Association="MenajedbModel.FK_Ventas_Usuarios" />
       </Diagram>
     </edmx:Diagrams>

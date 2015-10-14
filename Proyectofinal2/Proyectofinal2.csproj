@@ -128,10 +128,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\db_categoria\CategoriaController.cs" />
     <Compile Include="Controllers\db_producto\ProductoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAL\CategoriasDAL.cs" />
+    <Compile Include="Models\DAL\ProductoDAL.cs" />
     <Compile Include="Models\Menajes_db\Banco_menaje.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -293,9 +296,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Producto\IngresoProducto.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Ingreso.cshtml" />
+    <Content Include="Views\Categoria\Ingresar.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

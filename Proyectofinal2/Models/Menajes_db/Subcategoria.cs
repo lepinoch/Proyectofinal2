@@ -14,17 +14,11 @@ namespace Proyectofinal2.Models.Menajes_db
     
     public partial class Subcategoria
     {
-        public Subcategoria()
-        {
-            this.Producto = new HashSet<Producto>();
-        }
-    
         public int Id_subcategoria { get; set; }
         public Nullable<int> Cantidad { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Id_categoria { get; set; }
     
         public virtual Categoria Categoria { get; set; }
-        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

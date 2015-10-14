@@ -17,7 +17,6 @@ namespace Proyectofinal2.Models.Menajes_db
         public Carrito()
         {
             this.Metodo_pago = new HashSet<Metodo_pago>();
-            this.Producto = new HashSet<Producto>();
         }
     
         public int Id_carrito { get; set; }
@@ -29,6 +28,5 @@ namespace Proyectofinal2.Models.Menajes_db
     
         public virtual Ventas Ventas { get; set; }
         public virtual ICollection<Metodo_pago> Metodo_pago { get; set; }
-        public virtual ICollection<Producto> Producto { get; set; }
     }
 }
