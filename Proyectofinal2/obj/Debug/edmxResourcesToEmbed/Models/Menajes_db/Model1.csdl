@@ -1,22 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MenajedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="MenajedbEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Empresa_cliente" EntityType="MenajedbModel.Empresa_cliente" />
-    <EntitySet Name="Usuarios" EntityType="MenajedbModel.Usuarios" />
-    <AssociationSet Name="FK_Usuarios_Empresacliente" Association="MenajedbModel.FK_Usuarios_Empresacliente">
-      <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
-      <End Role="Usuarios" EntitySet="Usuarios" />
-    </AssociationSet>
     <EntitySet Name="Banco_menaje" EntityType="MenajedbModel.Banco_menaje" />
     <EntitySet Name="Carrito" EntityType="MenajedbModel.Carrito" />
     <EntitySet Name="Categoria" EntityType="MenajedbModel.Categoria" />
+    <EntitySet Name="Contacto" EntityType="MenajedbModel.Contacto" />
     <EntitySet Name="Debito" EntityType="MenajedbModel.Debito" />
     <EntitySet Name="Despacho" EntityType="MenajedbModel.Despacho" />
     <EntitySet Name="Direccion" EntityType="MenajedbModel.Direccion" />
+    <EntitySet Name="Empresa_cliente" EntityType="MenajedbModel.Empresa_cliente" />
     <EntitySet Name="Mensaje_consulta" EntityType="MenajedbModel.Mensaje_consulta" />
     <EntitySet Name="Metodo_pago" EntityType="MenajedbModel.Metodo_pago" />
     <EntitySet Name="Producto" EntityType="MenajedbModel.Producto" />
     <EntitySet Name="Subcategoria" EntityType="MenajedbModel.Subcategoria" />
+    <EntitySet Name="Usuarios" EntityType="MenajedbModel.Usuarios" />
     <EntitySet Name="Ventas" EntityType="MenajedbModel.Ventas" />
     <AssociationSet Name="FK_Debito_Bancomenaje" Association="MenajedbModel.FK_Debito_Bancomenaje">
       <End Role="Banco_menaje" EntitySet="Banco_menaje" />
@@ -46,6 +43,10 @@
       <End Role="Ventas" EntitySet="Ventas" />
       <End Role="Despacho" EntitySet="Despacho" />
     </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Empresacliente" Association="MenajedbModel.FK_Usuarios_Empresacliente">
+      <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
     <AssociationSet Name="FK_Mensaje_consulta_Usuarios" Association="MenajedbModel.FK_Mensaje_consulta_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
@@ -55,44 +56,6 @@
       <End Role="Ventas" EntitySet="Ventas" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Empresa_cliente">
-    <Key>
-      <PropertyRef Name="Id_empresacliente" />
-    </Key>
-    <Property Name="Id_empresacliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Giro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Contacto_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Empresa_cliente" ToRole="Usuarios" />
-  </EntityType>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="Rut" />
-    </Key>
-    <Property Name="Rut" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Id_empresacliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Empresa_cliente" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Usuarios" ToRole="Empresa_cliente" />
-    <NavigationProperty Name="Mensaje_consulta" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Usuarios" ToRole="Mensaje_consulta" />
-    <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
-  </EntityType>
-  <Association Name="FK_Usuarios_Empresacliente">
-    <End Type="MenajedbModel.Empresa_cliente" Role="Empresa_cliente" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empresa_cliente">
-        <PropertyRef Name="Id_empresacliente" />
-      </Principal>
-      <Dependent Role="Usuarios">
-        <PropertyRef Name="Id_empresacliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Banco_menaje">
     <Key>
       <PropertyRef Name="Num_cuenta" />
@@ -125,6 +88,16 @@
     <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cantidad" Type="Int32" />
     <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Categoria" ToRole="Subcategoria" />
+  </EntityType>
+  <EntityType Name="Contacto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Asunto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mensaje" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Debito">
     <Key>
@@ -160,6 +133,15 @@
     <Property Name="Cod_postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Num_departamento" Type="Int32" />
     <NavigationProperty Name="Despacho" Relationship="MenajedbModel.FK_Despacho_Direccion" FromRole="Direccion" ToRole="Despacho" />
+  </EntityType>
+  <EntityType Name="Empresa_cliente">
+    <Key>
+      <PropertyRef Name="Id_empresacliente" />
+    </Key>
+    <Property Name="Id_empresacliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Giro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contacto_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Empresa_cliente" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="Mensaje_consulta">
     <Key>
@@ -205,6 +187,23 @@
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_categoria" Type="Int32" />
     <NavigationProperty Name="Categoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Subcategoria" ToRole="Categoria" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Rut" />
+    </Key>
+    <Property Name="Rut" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_empresacliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Empresa_cliente" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Usuarios" ToRole="Empresa_cliente" />
+    <NavigationProperty Name="Mensaje_consulta" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Usuarios" ToRole="Mensaje_consulta" />
+    <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
   </EntityType>
   <EntityType Name="Ventas">
     <Key>
@@ -299,6 +298,18 @@
       </Principal>
       <Dependent Role="Despacho">
         <PropertyRef Name="Id_ventas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Empresacliente">
+    <End Type="MenajedbModel.Empresa_cliente" Role="Empresa_cliente" Multiplicity="0..1" />
+    <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empresa_cliente">
+        <PropertyRef Name="Id_empresacliente" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Id_empresacliente" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

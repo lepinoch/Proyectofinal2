@@ -130,10 +130,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\db_categoria\CategoriaController.cs" />
     <Compile Include="Controllers\db_producto\ProductoController.cs" />
+    <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAL\CategoriasDAL.cs" />
+    <Compile Include="Models\DAL\ContactoDAL.cs" />
     <Compile Include="Models\DAL\ProductoDAL.cs" />
     <Compile Include="Models\Menajes_db\Banco_menaje.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -142,6 +144,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menajes_db\Categoria.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Menajes_db\Contacto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Menajes_db\Debito.cs">
@@ -196,6 +201,74 @@
     <Content Include="App_Data\Menajedb_log.ldf">
       <DependentUpon>Menajedb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Imagenes\404\404.png" />
+    <Content Include="Content\Imagenes\blog\blog-one.jpg" />
+    <Content Include="Content\Imagenes\blog\blog-three.jpg" />
+    <Content Include="Content\Imagenes\blog\blog-two.jpg" />
+    <Content Include="Content\Imagenes\blog\man-four.jpg" />
+    <Content Include="Content\Imagenes\blog\man-one.jpg" />
+    <Content Include="Content\Imagenes\blog\man-three.jpg" />
+    <Content Include="Content\Imagenes\blog\man-two.jpg" />
+    <Content Include="Content\Imagenes\blog\socials.png" />
+    <Content Include="Content\Imagenes\cart\one.png" />
+    <Content Include="Content\Imagenes\cart\three.png" />
+    <Content Include="Content\Imagenes\cart\two.png" />
+    <Content Include="Content\Imagenes\home\bg_border.png" />
+    <Content Include="Content\Imagenes\home\gallery1.jpg" />
+    <Content Include="Content\Imagenes\home\gallery2.jpg" />
+    <Content Include="Content\Imagenes\home\gallery3.jpg" />
+    <Content Include="Content\Imagenes\home\gallery4.jpg" />
+    <Content Include="Content\Imagenes\home\girl1.jpg" />
+    <Content Include="Content\Imagenes\home\girl2.jpg" />
+    <Content Include="Content\Imagenes\home\girl3.jpg" />
+    <Content Include="Content\Imagenes\home\iframe1.png" />
+    <Content Include="Content\Imagenes\home\iframe2.png" />
+    <Content Include="Content\Imagenes\home\iframe3.png" />
+    <Content Include="Content\Imagenes\home\iframe4.png" />
+    <Content Include="Content\Imagenes\home\logo.png" />
+    <Content Include="Content\Imagenes\home\map.png" />
+    <Content Include="Content\Imagenes\home\new.png" />
+    <Content Include="Content\Imagenes\home\partner1.png" />
+    <Content Include="Content\Imagenes\home\partner2.png" />
+    <Content Include="Content\Imagenes\home\partner3.png" />
+    <Content Include="Content\Imagenes\home\partner4.png" />
+    <Content Include="Content\Imagenes\home\pricing.png" />
+    <Content Include="Content\Imagenes\home\product1.jpg" />
+    <Content Include="Content\Imagenes\home\product2.jpg" />
+    <Content Include="Content\Imagenes\home\product3.jpg" />
+    <Content Include="Content\Imagenes\home\product4.jpg" />
+    <Content Include="Content\Imagenes\home\product5.jpg" />
+    <Content Include="Content\Imagenes\home\product6.jpg" />
+    <Content Include="Content\Imagenes\home\recommend1.jpg" />
+    <Content Include="Content\Imagenes\home\recommend2.jpg" />
+    <Content Include="Content\Imagenes\home\recommend3.jpg" />
+    <Content Include="Content\Imagenes\home\sale.png" />
+    <Content Include="Content\Imagenes\home\searchicon.png" />
+    <Content Include="Content\Imagenes\home\shipping.jpg" />
+    <Content Include="Content\Imagenes\product-details\1.jpg" />
+    <Content Include="Content\Imagenes\product-details\new.jpg" />
+    <Content Include="Content\Imagenes\product-details\rating.png" />
+    <Content Include="Content\Imagenes\product-details\share.png" />
+    <Content Include="Content\Imagenes\product-details\similar1.jpg" />
+    <Content Include="Content\Imagenes\product-details\similar2.jpg" />
+    <Content Include="Content\Imagenes\product-details\similar3.jpg" />
+    <Content Include="Content\Imagenes\shop\advertisement.jpg" />
+    <Content Include="Content\Imagenes\shop\product10.jpg" />
+    <Content Include="Content\Imagenes\shop\product11.jpg" />
+    <Content Include="Content\Imagenes\shop\product12.jpg" />
+    <Content Include="Content\Imagenes\shop\product7.jpg" />
+    <Content Include="Content\Imagenes\shop\product8.jpg" />
+    <Content Include="Content\Imagenes\shop\product9.jpg" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\prettyPhoto.css" />
+    <Content Include="Content\price-range.css" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -269,12 +342,31 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\contact.js" />
+    <Content Include="Scripts\gmaps.js" />
+    <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.prettyPhoto.js" />
+    <Content Include="Scripts\jquery.scrollUp.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -283,7 +375,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\price-range.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -300,10 +394,11 @@
     <Content Include="Views\Producto\Ingreso.cshtml" />
     <Content Include="Views\Categoria\Ingresar.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Categoria\Pico.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

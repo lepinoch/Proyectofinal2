@@ -29,6 +29,16 @@
     <Property Name="Tipo" Type="varchar" MaxLength="50" />
     <Property Name="Cantidad" Type="int" />
   </EntityType>
+  <EntityType Name="Contacto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Asunto" Type="varchar" MaxLength="50" />
+    <Property Name="Mensaje" Type="varchar" MaxLength="250" />
+  </EntityType>
   <EntityType Name="Debito">
     <Key>
       <PropertyRef Name="Cod_deposito" />
@@ -255,6 +265,7 @@
     <EntitySet Name="Banco_menaje" EntityType="Self.Banco_menaje" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contacto" EntityType="Self.Contacto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Debito" EntityType="Self.Debito" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Despacho" EntityType="Self.Despacho" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />

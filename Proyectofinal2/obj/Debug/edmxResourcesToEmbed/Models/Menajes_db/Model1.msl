@@ -1,30 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="MenajedbModelStoreContainer" CdmEntityContainer="MenajedbEntities">
-    <EntitySetMapping Name="Empresa_cliente">
-      <EntityTypeMapping TypeName="MenajedbModel.Empresa_cliente">
-        <MappingFragment StoreEntitySet="Empresa_cliente">
-          <ScalarProperty Name="Contacto_empresa" ColumnName="Contacto_empresa" />
-          <ScalarProperty Name="Giro" ColumnName="Giro" />
-          <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Usuarios">
-      <EntityTypeMapping TypeName="MenajedbModel.Usuarios">
-        <MappingFragment StoreEntitySet="Usuarios">
-          <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
-          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
-          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Rut" ColumnName="Rut" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Banco_menaje">
       <EntityTypeMapping TypeName="MenajedbModel.Banco_menaje">
         <MappingFragment StoreEntitySet="Banco_menaje">
@@ -54,6 +30,17 @@
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />
           <ScalarProperty Name="Nombre_categoria" ColumnName="Nombre_categoria" />
           <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacto">
+      <EntityTypeMapping TypeName="MenajedbModel.Contacto">
+        <MappingFragment StoreEntitySet="Contacto">
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,6 +74,15 @@
           <ScalarProperty Name="Numero" ColumnName="Numero" />
           <ScalarProperty Name="Calle" ColumnName="Calle" />
           <ScalarProperty Name="Id_direccion" ColumnName="Id_direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresa_cliente">
+      <EntityTypeMapping TypeName="MenajedbModel.Empresa_cliente">
+        <MappingFragment StoreEntitySet="Empresa_cliente">
+          <ScalarProperty Name="Contacto_empresa" ColumnName="Contacto_empresa" />
+          <ScalarProperty Name="Giro" ColumnName="Giro" />
+          <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +128,21 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="Id_subcategoria" ColumnName="Id_subcategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="MenajedbModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id_empresacliente" ColumnName="Id_empresacliente" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Rut" ColumnName="Rut" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
