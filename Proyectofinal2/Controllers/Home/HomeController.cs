@@ -15,6 +15,11 @@ namespace Proyectofinal2.Controllers.Home
 
         public ActionResult Index()
         {
+            //SubcategoriaDAL DAL = new SubcategoriaDAL();
+            //ViewBag.Subcategorias = DAL.Listar_sub(Id_categoria);
+   
+            CategoriasDAL DAL = new CategoriasDAL();
+            ViewBag.categorias = DAL.listar();
             return View();
         }
 
@@ -117,13 +122,43 @@ namespace Proyectofinal2.Controllers.Home
 
 
 
-
         // GET: /Home/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int Id_categoria)
         {
+            SubcategoriaDAL DAL = new SubcategoriaDAL();
+            ViewBag.Subcategorias = DAL.Listar_sub(Id_categoria);
+        
             return View();
         }
+
+
+
+
+
+
+
+
+        //public FileContentResult GetImage(int Id_producto)
+        //{
+
+        //    MenajedbEntities db = new MenajedbEntities();
+        //    Producto pro = db.Producto.FirstOrDefault(c => c.Id_producto == Id_producto);
+        //    if (pro != null)
+        //    {
+
+        //        return File(pro.Imagen, pro.N_imagen);
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
+
+
+
+
 
         //
         // GET: /Home/Create

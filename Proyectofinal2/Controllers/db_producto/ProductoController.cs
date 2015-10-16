@@ -16,6 +16,8 @@ namespace Proyectofinal2.Controllers.db_producto
 
         public ActionResult Index()
         {
+            ProductoDAL DAL = new ProductoDAL();
+            ViewBag.producto = DAL.listar();
             return View();
         }
 
@@ -30,6 +32,41 @@ namespace Proyectofinal2.Controllers.db_producto
         //
         // GET: /Producto/Create
 
+
+        
+        /// /////////////////////////////////////////////////
+    public FileContentResult GetImage(int Id_producto) 
+        {
+
+            MenajedbEntities db = new MenajedbEntities();
+            Producto pro = db.Producto.FirstOrDefault(c => c.Id_producto == Id_producto);
+          if (pro != null)
+               { 
+                 
+                return File(pro.Imagen, pro.N_imagen); 
+                } 
+            else 
+            { 
+                return null;
+            } 
+        }
+        /////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public ActionResult Create()
         {
             return View();
@@ -39,42 +76,35 @@ namespace Proyectofinal2.Controllers.db_producto
         // POST: /Producto/Create
    
         [HttpPost]
-        public ActionResult Create(FormCollection p)
+        public ActionResult Create(FormCollection p, HttpPostedFileBase imagen)
         {
-            try
-            {
+         
            
                 MenajedbEntities ctx = new MenajedbEntities();
-     
-      
 
-                Producto pro = new Producto();
-           
-                pro.Nombre = p["Nombre"];
-                pro.Precio = Int16.Parse(p["Precio"]);
-                pro.Stock = Int16.Parse(p["Stock"]);
-                pro.Imagen = (p["Imagen"]);
-                pro.Descripcion = (p["Descripcion"]);
-                pro.Id_subcategoria = Int16.Parse(p["Id_subcategoria"]);
-       
-                ProductoDAL DAL = new ProductoDAL();
                 if (ModelState.IsValid)
-	{
-		 
-                DAL.IngresarProducto(pro);
-               
-	}
-                
+                {
+                    Producto pro = new Producto();
 
-
+                    pro.Nombre = p["Nombre"];
+                    pro.Precio = Int16.Parse(p["Precio"]);
+                    pro.Stock = Int16.Parse(p["Stock"]);
+                    pro.Descripcion = (p["Descripcion"]);
+                    pro.Id_subcategoria = Int16.Parse(p["Id_subcategoria"]);
+                    if (imagen != null)
+                    {
+                        pro.N_imagen = imagen.ContentType;
+                        pro.Imagen = new byte[imagen.ContentLength];
+                        imagen.InputStream.Read(pro.Imagen, 0, imagen.ContentLength);
+                    }
+                    ProductoDAL DAL = new ProductoDAL();
+                        DAL.IngresarProducto(pro);
+	            }
 
                 return RedirectToAction("Index");
 
-            }
-            catch
-            {
-                return View("piconchetumare");
-            }
+            
+       
         }
 
 

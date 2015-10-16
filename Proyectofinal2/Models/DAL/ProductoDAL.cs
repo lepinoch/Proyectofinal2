@@ -21,13 +21,23 @@ namespace Proyectofinal2.Models.DAL
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 
                 return false;
                 
             }
         }
+
+        public List<Producto> listar()
+        {
+            MenajedbEntities ctx = new MenajedbEntities();
+            var lista = (from o in ctx.Producto
+                         select o).ToList();
+            return lista;
+        }
+
+        
     
     
     }

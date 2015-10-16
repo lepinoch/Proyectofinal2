@@ -16,10 +16,13 @@ namespace Proyectofinal2.Models.Menajes_db
     {
         public int Id_producto { get; set; }
         public string Nombre { get; set; }
-        public string Imagen { get; set; }
+        public byte[] Imagen { get; set; }
         public string Descripcion { get; set; }
         public Nullable<int> Stock { get; set; }
         public Nullable<int> Precio { get; set; }
         public Nullable<int> Id_subcategoria { get; set; }
+        public string N_imagen { get; set; }
+    
+        public virtual Subcategoria Subcategoria { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Proyectofinal2.Models.DAL
     {
         public bool IngresarCategoria(Categoria c)
         {
+            
             try
             {
                 MenajedbEntities ctx = new MenajedbEntities();
@@ -20,13 +21,27 @@ namespace Proyectofinal2.Models.DAL
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception )
             {
 
                 return false;
 
             }
         }
+
+
+        public List<Categoria> listar()
+        {
+            MenajedbEntities ctx = new MenajedbEntities();
+            var lista = (from o in ctx.Categoria
+                         select o).ToList();
+            return lista;
+        }
+
+ 
+     
+
+
 
 
     }

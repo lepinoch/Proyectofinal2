@@ -111,6 +111,7 @@
     <EntitySetMapping Name="Producto">
       <EntityTypeMapping TypeName="MenajedbModel.Producto">
         <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="N_imagen" ColumnName="N_imagen" />
           <ScalarProperty Name="Id_subcategoria" ColumnName="Id_subcategoria" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Stock" ColumnName="Stock" />

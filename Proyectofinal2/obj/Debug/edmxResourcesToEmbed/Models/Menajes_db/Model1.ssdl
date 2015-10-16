@@ -103,17 +103,18 @@
     </Key>
     <Property Name="Id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" />
-    <Property Name="Imagen" Type="varchar" MaxLength="50" />
+    <Property Name="Imagen" Type="varbinary(max)" />
     <Property Name="Descripcion" Type="varchar" MaxLength="250" />
     <Property Name="Stock" Type="int" />
     <Property Name="Precio" Type="int" />
     <Property Name="Id_subcategoria" Type="int" />
+    <Property Name="N_imagen" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Subcategoria">
     <Key>
       <PropertyRef Name="Id_subcategoria" />
     </Key>
-    <Property Name="Id_subcategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_subcategoria" Type="int" Nullable="false" />
     <Property Name="Cantidad" Type="int" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" />
     <Property Name="Id_categoria" Type="int" />
@@ -225,6 +226,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Producto_Subcategoria">
+    <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcategoria">
+        <PropertyRef Name="Id_subcategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Id_subcategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Subcategoria_Categoria">
     <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
     <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="*" />
@@ -303,6 +316,10 @@
     <AssociationSet Name="FK_metodopago_Debito" Association="Self.FK_metodopago_Debito">
       <End Role="Debito" EntitySet="Debito" />
       <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_Subcategoria" Association="Self.FK_Producto_Subcategoria">
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+      <End Role="Producto" EntitySet="Producto" />
     </AssociationSet>
     <AssociationSet Name="FK_Subcategoria_Categoria" Association="Self.FK_Subcategoria_Categoria">
       <End Role="Categoria" EntitySet="Categoria" />

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Proyectofinal2.Models.Menajes_db.Subcategoria>
+
+@{
+    ViewBag.Title = "View1";
+}
+
+<h2>View1</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_subcategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_categoria)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (Proyectofinal2.Models.Menajes_db.Subcategoria item in ViewBag.Subcategorias)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_subcategoria)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_categoria)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

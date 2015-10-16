@@ -1,87 +1,76 @@
-﻿@model Proyectofinal2.Models.Menajes_db.Producto
+﻿@model IEnumerable<Proyectofinal2.Models.Menajes_db.Producto>
 
 @{
-    ViewBag.Title = "Ingreso";
+    ViewBag.Title = "Index";
 }
 
-<h2>Ingreso</h2>
+<h2>Index</h2>
 
-@using (Html.BeginForm("Create","Producto",FormMethod.Post))
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_subcategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.N_imagen)
+        </th>
+        <th></th>
+    </tr>
+   
+
+@foreach (Proyectofinal2.Models.Menajes_db.Producto item in ViewBag.producto)
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Producto</legend>
-
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id_producto)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id_producto)
-            @Html.ValidationMessageFor(model => model.Id_producto)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nombre)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nombre)
-            @Html.ValidationMessageFor(model => model.Nombre)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Imagen)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Imagen)
-            @Html.ValidationMessageFor(model => model.Imagen)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Descripcion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Descripcion)
-            @Html.ValidationMessageFor(model => model.Descripcion)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Stock)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Stock)
-            @Html.ValidationMessageFor(model => model.Stock)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Precio)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Precio)
-            @Html.ValidationMessageFor(model => model.Precio)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id_subcategoria)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id_subcategoria)
-            @Html.ValidationMessageFor(model => model.Id_subcategoria)
-        </div>
-
-      
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_producto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id_subcategoria)
+        </td>
+        <td>
+          @if (item.Imagen!= null)
+          {
+            <div style="float:left;margin-right:20px">
+                <img width="75" height="75" src="@Url.Action("GetImage", "Producto", new { item.Id_producto})" />
+            </div>
+          } 
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</table>

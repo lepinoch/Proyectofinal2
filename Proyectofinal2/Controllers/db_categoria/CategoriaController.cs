@@ -13,10 +13,16 @@ namespace Proyectofinal2.Controllers.db_categoria
         //
         // GET: /Categoria/
 
-        public ActionResult Index()
+
+
+
+        public ActionResult Listar()
         {
+            CategoriasDAL DAL = new CategoriasDAL();
+            ViewBag.categorias = DAL.listar();
             return View();
         }
+
 
         //
         // GET: /Categoria/Details/5

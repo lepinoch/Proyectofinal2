@@ -51,6 +51,10 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
     </AssociationSet>
+    <AssociationSet Name="FK_Producto_Subcategoria" Association="MenajedbModel.FK_Producto_Subcategoria">
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
     <AssociationSet Name="FK_Ventas_Usuarios" Association="MenajedbModel.FK_Ventas_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="Ventas" EntitySet="Ventas" />
@@ -172,21 +176,24 @@
     </Key>
     <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="Stock" Type="Int32" />
     <Property Name="Precio" Type="Int32" />
     <Property Name="Id_subcategoria" Type="Int32" />
+    <Property Name="N_imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Producto" ToRole="Subcategoria" />
   </EntityType>
   <EntityType Name="Subcategoria">
     <Key>
       <PropertyRef Name="Id_subcategoria" />
     </Key>
-    <Property Name="Id_subcategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_subcategoria" Type="Int32" Nullable="false" />
     <Property Name="Cantidad" Type="Int32" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_categoria" Type="Int32" />
     <NavigationProperty Name="Categoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Subcategoria" ToRole="Categoria" />
+    <NavigationProperty Name="Producto" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Subcategoria" ToRole="Producto" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -322,6 +329,18 @@
       </Principal>
       <Dependent Role="Mensaje_consulta">
         <PropertyRef Name="Rut" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Producto_Subcategoria">
+    <End Type="MenajedbModel.Subcategoria" Role="Subcategoria" Multiplicity="0..1" />
+    <End Type="MenajedbModel.Producto" Role="Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcategoria">
+        <PropertyRef Name="Id_subcategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Id_subcategoria" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
