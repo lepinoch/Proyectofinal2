@@ -8,17 +8,13 @@ namespace Proyectofinal2.Models.DAL
 {
     public class SubcategoriaDAL
     {
-        //       public List<Subcategoria> listar_sub(int Id_categoria)
-        //{
-        //    MenajedbEntities ctx = new MenajedbEntities();
-        //    var listar = (from o in ctx.Categoria
-        //                  join c in ctx.Subcategoria 
-        //                  on o.Id_categoria 
-        //                  equals c.Id_categoria
-        //                  select c).ToList();
-
-        //    return listar;
-        //}
+        public List<Subcategoria> listar()
+        {
+            MenajedbEntities ctx = new MenajedbEntities();
+            var lista = (from o in ctx.Subcategoria
+                         select o).ToList();
+            return lista;
+        }
 
 
 

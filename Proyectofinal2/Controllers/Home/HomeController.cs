@@ -15,11 +15,14 @@ namespace Proyectofinal2.Controllers.Home
 
         public ActionResult Index()
         {
-            //SubcategoriaDAL DAL = new SubcategoriaDAL();
-            //ViewBag.Subcategorias = DAL.Listar_sub(Id_categoria);
+
+            ProductoDAL pro = new ProductoDAL();
+            ViewBag.Producto = pro.listar();
+            SubcategoriaDAL sub = new SubcategoriaDAL();
+            ViewBag.Subcategoria = sub.listar();
    
-            CategoriasDAL DAL = new CategoriasDAL();
-            ViewBag.categorias = DAL.listar();
+            CategoriasDAL cat = new CategoriasDAL();
+            ViewBag.Categoria = cat.listar();
             return View();
         }
 

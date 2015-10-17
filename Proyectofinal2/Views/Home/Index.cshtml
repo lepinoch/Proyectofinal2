@@ -1,4 +1,4 @@
-﻿@model Proyectofinal2.Models.Menajes_db.Categoria
+﻿
 @{
     ViewBag.Title = "Index";
 }
@@ -95,48 +95,47 @@
                  
                     <div class="panel-group category-products" id="accordian">
                         <!--category-productsr-->
-                        @foreach (Proyectofinal2.Models.Menajes_db.Categoria Categoria in ViewBag.categorias)
+                        @foreach (var item in ViewBag.Categoria)
+                        {
+                            <div class="panel panel-default">
 
-                { 
-                   <div class="panel panel-default">
+                                <div class="panel-heading">
 
-                            <div class="panel-heading">
+                                    <h4 class="panel-title">
 
-                                <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordian" href="#@item.Id_categoria">
 
-                                    <a data-toggle="collapse" data-parent="#accordian" href="#@Categoria.Id_categoria" @Url.Action("Details", "Home", new { Categoria.Id_categoria })>
+                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
 
-                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                       
-                          
+                                            @item.Nombre_categoria
 
-                                    </a>
+                                        </a>
 
-                                </h4>
+                                    </h4>
+
+                                </div>
+
+                                <div id="@item.Id_categoria" class="panel-collapse collapse">
+
+                                    <div class="panel-body">
+
+                                        <ul>
+
+                                            @foreach (var item2 in ViewBag.Subcategoria)
+                                            {
+                                                if (item.Id_categoria == item2.Id_categoria)
+                                                {
+                                                    <h2> <li>@item2.Nombre</li> </h2>
+                                                }
+                                            }
+                                        </ul>
+
+                                    </div>
+
+                                </div>
 
                             </div>
-
-                       <div id="@Categoria.Id_categoria" class="panel-collapse collapse">
-                           
-                           <div class="panel-body" id="">
-                              
-                               
-
-{  
-                               <ul>
-
-                                   <li><h2>
-
-
-                                          </h2></li></ul>}
-
-                           </div>
-
-                       </div>
-
-                        </div>
-                    }
-
+                        }
 
                     </div><!--/category-productsr-->
 
