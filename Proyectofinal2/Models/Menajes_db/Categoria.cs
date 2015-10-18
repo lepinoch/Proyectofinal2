@@ -22,7 +22,6 @@ namespace Proyectofinal2.Models.Menajes_db
         public int Id_categoria { get; set; }
         public string Nombre_categoria { get; set; }
         public string Tipo { get; set; }
-        public Nullable<int> Cantidad { get; set; }
     
         public virtual ICollection<Subcategoria> Subcategoria { get; set; }
     }

@@ -1,74 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MenajedbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="MenajedbEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Banco_menaje" EntityType="MenajedbModel.Banco_menaje" />
-    <EntitySet Name="Carrito" EntityType="MenajedbModel.Carrito" />
-    <EntitySet Name="Categoria" EntityType="MenajedbModel.Categoria" />
-    <EntitySet Name="Contacto" EntityType="MenajedbModel.Contacto" />
-    <EntitySet Name="Debito" EntityType="MenajedbModel.Debito" />
-    <EntitySet Name="Despacho" EntityType="MenajedbModel.Despacho" />
-    <EntitySet Name="Direccion" EntityType="MenajedbModel.Direccion" />
-    <EntitySet Name="Empresa_cliente" EntityType="MenajedbModel.Empresa_cliente" />
-    <EntitySet Name="Mensaje_consulta" EntityType="MenajedbModel.Mensaje_consulta" />
-    <EntitySet Name="Metodo_pago" EntityType="MenajedbModel.Metodo_pago" />
-    <EntitySet Name="Producto" EntityType="MenajedbModel.Producto" />
-    <EntitySet Name="Subcategoria" EntityType="MenajedbModel.Subcategoria" />
-    <EntitySet Name="Usuarios" EntityType="MenajedbModel.Usuarios" />
-    <EntitySet Name="Ventas" EntityType="MenajedbModel.Ventas" />
-    <AssociationSet Name="FK_Debito_Bancomenaje" Association="MenajedbModel.FK_Debito_Bancomenaje">
-      <End Role="Banco_menaje" EntitySet="Banco_menaje" />
-      <End Role="Debito" EntitySet="Debito" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Carrito_Ventas" Association="MenajedbModel.FK_Carrito_Ventas">
-      <End Role="Ventas" EntitySet="Ventas" />
-      <End Role="Carrito" EntitySet="Carrito" />
-    </AssociationSet>
-    <AssociationSet Name="FK_metodopago_Carrito" Association="MenajedbModel.FK_metodopago_Carrito">
-      <End Role="Carrito" EntitySet="Carrito" />
-      <End Role="Metodo_pago" EntitySet="Metodo_pago" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Subcategoria_Categoria" Association="MenajedbModel.FK_Subcategoria_Categoria">
-      <End Role="Categoria" EntitySet="Categoria" />
-      <End Role="Subcategoria" EntitySet="Subcategoria" />
-    </AssociationSet>
-    <AssociationSet Name="FK_metodopago_Debito" Association="MenajedbModel.FK_metodopago_Debito">
-      <End Role="Debito" EntitySet="Debito" />
-      <End Role="Metodo_pago" EntitySet="Metodo_pago" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Despacho_Direccion" Association="MenajedbModel.FK_Despacho_Direccion">
-      <End Role="Direccion" EntitySet="Direccion" />
-      <End Role="Despacho" EntitySet="Despacho" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Despacho_Ventas" Association="MenajedbModel.FK_Despacho_Ventas">
-      <End Role="Ventas" EntitySet="Ventas" />
-      <End Role="Despacho" EntitySet="Despacho" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Usuarios_Empresacliente" Association="MenajedbModel.FK_Usuarios_Empresacliente">
-      <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
-      <End Role="Usuarios" EntitySet="Usuarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Mensaje_consulta_Usuarios" Association="MenajedbModel.FK_Mensaje_consulta_Usuarios">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Producto_Subcategoria" Association="MenajedbModel.FK_Producto_Subcategoria">
-      <End Role="Subcategoria" EntitySet="Subcategoria" />
-      <End Role="Producto" EntitySet="Producto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ventas_Usuarios" Association="MenajedbModel.FK_Ventas_Usuarios">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Ventas" EntitySet="Ventas" />
-    </AssociationSet>
-  </EntityContainer>
   <EntityType Name="Banco_menaje">
     <Key>
       <PropertyRef Name="Num_cuenta" />
     </Key>
-    <Property Name="Num_cuenta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Num_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nom_banco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Tipo_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Nombre_titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Debito" Relationship="MenajedbModel.FK_Debito_Bancomenaje" FromRole="Banco_menaje" ToRole="Debito" />
+    <NavigationProperty Name="Debito" Relationship="Self.FK_Debito_Bancomenaje" FromRole="Banco_menaje" ToRole="Debito" />
   </EntityType>
   <EntityType Name="Carrito">
     <Key>
@@ -80,8 +20,8 @@
     <Property Name="Cantidad" Type="Int32" />
     <Property Name="Subtotal" Type="Int32" />
     <Property Name="Id_ventas" Type="Int32" />
-    <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Carrito_Ventas" FromRole="Carrito" ToRole="Ventas" />
-    <NavigationProperty Name="Metodo_pago" Relationship="MenajedbModel.FK_metodopago_Carrito" FromRole="Carrito" ToRole="Metodo_pago" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Carrito_Ventas" FromRole="Carrito" ToRole="Ventas" />
+    <NavigationProperty Name="Metodo_pago" Relationship="Self.FK_metodopago_Carrito" FromRole="Carrito" ToRole="Metodo_pago" />
   </EntityType>
   <EntityType Name="Categoria">
     <Key>
@@ -90,8 +30,7 @@
     <Property Name="Id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre_categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Cantidad" Type="Int32" />
-    <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Categoria" ToRole="Subcategoria" />
+    <NavigationProperty Name="Subcategoria" Relationship="Self.FK_Subcategoria_Categoria" FromRole="Categoria" ToRole="Subcategoria" />
   </EntityType>
   <EntityType Name="Contacto">
     <Key>
@@ -109,21 +48,21 @@
     </Key>
     <Property Name="Cod_deposito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Num_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Banco_menaje" Relationship="MenajedbModel.FK_Debito_Bancomenaje" FromRole="Debito" ToRole="Banco_menaje" />
-    <NavigationProperty Name="Metodo_pago" Relationship="MenajedbModel.FK_metodopago_Debito" FromRole="Debito" ToRole="Metodo_pago" />
+    <NavigationProperty Name="Banco_menaje" Relationship="Self.FK_Debito_Bancomenaje" FromRole="Debito" ToRole="Banco_menaje" />
+    <NavigationProperty Name="Metodo_pago" Relationship="Self.FK_metodopago_Debito" FromRole="Debito" ToRole="Metodo_pago" />
   </EntityType>
   <EntityType Name="Despacho">
     <Key>
       <PropertyRef Name="Num_seguimiento" />
     </Key>
-    <Property Name="Num_seguimiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Num_seguimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_envio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Fecha_entrega" Type="Binary" MaxLength="50" FixedLength="false" />
     <Property Name="Id_ventas" Type="Int32" />
     <Property Name="Id_direccion" Type="Int32" />
-    <NavigationProperty Name="Direccion" Relationship="MenajedbModel.FK_Despacho_Direccion" FromRole="Despacho" ToRole="Direccion" />
-    <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Despacho_Ventas" FromRole="Despacho" ToRole="Ventas" />
+    <NavigationProperty Name="Direccion" Relationship="Self.FK_Despacho_Direccion" FromRole="Despacho" ToRole="Direccion" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Despacho_Ventas" FromRole="Despacho" ToRole="Ventas" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -136,16 +75,16 @@
     <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cod_postal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Num_departamento" Type="Int32" />
-    <NavigationProperty Name="Despacho" Relationship="MenajedbModel.FK_Despacho_Direccion" FromRole="Direccion" ToRole="Despacho" />
+    <NavigationProperty Name="Despacho" Relationship="Self.FK_Despacho_Direccion" FromRole="Direccion" ToRole="Despacho" />
   </EntityType>
   <EntityType Name="Empresa_cliente">
     <Key>
       <PropertyRef Name="Id_empresacliente" />
     </Key>
-    <Property Name="Id_empresacliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_empresacliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Giro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Contacto_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Empresa_cliente" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Empresacliente" FromRole="Empresa_cliente" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="Mensaje_consulta">
     <Key>
@@ -156,7 +95,7 @@
     <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Mensaje_consulta" ToRole="Usuarios" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Mensaje_consulta_Usuarios" FromRole="Mensaje_consulta" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="Metodo_pago">
     <Key>
@@ -167,8 +106,8 @@
     <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_carrito" Type="Int32" />
     <Property Name="Cod_deposito" Type="Int32" />
-    <NavigationProperty Name="Carrito" Relationship="MenajedbModel.FK_metodopago_Carrito" FromRole="Metodo_pago" ToRole="Carrito" />
-    <NavigationProperty Name="Debito" Relationship="MenajedbModel.FK_metodopago_Debito" FromRole="Metodo_pago" ToRole="Debito" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK_metodopago_Carrito" FromRole="Metodo_pago" ToRole="Carrito" />
+    <NavigationProperty Name="Debito" Relationship="Self.FK_metodopago_Debito" FromRole="Metodo_pago" ToRole="Debito" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -182,24 +121,23 @@
     <Property Name="Precio" Type="Int32" />
     <Property Name="Id_subcategoria" Type="Int32" />
     <Property Name="N_imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Subcategoria" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Producto" ToRole="Subcategoria" />
+    <NavigationProperty Name="Subcategoria" Relationship="Self.FK_Producto_Subcategoria" FromRole="Producto" ToRole="Subcategoria" />
   </EntityType>
   <EntityType Name="Subcategoria">
     <Key>
       <PropertyRef Name="Id_subcategoria" />
     </Key>
-    <Property Name="Id_subcategoria" Type="Int32" Nullable="false" />
-    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Id_subcategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_categoria" Type="Int32" />
-    <NavigationProperty Name="Categoria" Relationship="MenajedbModel.FK_Subcategoria_Categoria" FromRole="Subcategoria" ToRole="Categoria" />
-    <NavigationProperty Name="Producto" Relationship="MenajedbModel.FK_Producto_Subcategoria" FromRole="Subcategoria" ToRole="Producto" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_Subcategoria_Categoria" FromRole="Subcategoria" ToRole="Categoria" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Subcategoria" FromRole="Subcategoria" ToRole="Producto" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
       <PropertyRef Name="Rut" />
     </Key>
-    <Property Name="Rut" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -208,9 +146,9 @@
     <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_empresacliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Empresa_cliente" Relationship="MenajedbModel.FK_Usuarios_Empresacliente" FromRole="Usuarios" ToRole="Empresa_cliente" />
-    <NavigationProperty Name="Mensaje_consulta" Relationship="MenajedbModel.FK_Mensaje_consulta_Usuarios" FromRole="Usuarios" ToRole="Mensaje_consulta" />
-    <NavigationProperty Name="Ventas" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
+    <NavigationProperty Name="Empresa_cliente" Relationship="Self.FK_Usuarios_Empresacliente" FromRole="Usuarios" ToRole="Empresa_cliente" />
+    <NavigationProperty Name="Mensaje_consulta" Relationship="Self.FK_Mensaje_consulta_Usuarios" FromRole="Usuarios" ToRole="Mensaje_consulta" />
+    <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
   </EntityType>
   <EntityType Name="Ventas">
     <Key>
@@ -220,13 +158,13 @@
     <Property Name="Fecha" Type="DateTime" Precision="0" />
     <Property Name="Total" Type="Int32" />
     <Property Name="Rut" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Carrito" Relationship="MenajedbModel.FK_Carrito_Ventas" FromRole="Ventas" ToRole="Carrito" />
-    <NavigationProperty Name="Despacho" Relationship="MenajedbModel.FK_Despacho_Ventas" FromRole="Ventas" ToRole="Despacho" />
-    <NavigationProperty Name="Usuarios" Relationship="MenajedbModel.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
+    <NavigationProperty Name="Carrito" Relationship="Self.FK_Carrito_Ventas" FromRole="Ventas" ToRole="Carrito" />
+    <NavigationProperty Name="Despacho" Relationship="Self.FK_Despacho_Ventas" FromRole="Ventas" ToRole="Despacho" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
   </EntityType>
   <Association Name="FK_Debito_Bancomenaje">
-    <End Type="MenajedbModel.Banco_menaje" Role="Banco_menaje" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Debito" Role="Debito" Multiplicity="*" />
+    <End Role="Banco_menaje" Type="Self.Banco_menaje" Multiplicity="0..1" />
+    <End Role="Debito" Type="Self.Debito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Banco_menaje">
         <PropertyRef Name="Num_cuenta" />
@@ -237,8 +175,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Carrito_Ventas">
-    <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Carrito" Role="Carrito" Multiplicity="*" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ventas">
         <PropertyRef Name="Id_ventas" />
@@ -249,8 +187,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_metodopago_Carrito">
-    <End Type="MenajedbModel.Carrito" Role="Carrito" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Metodo_pago" Role="Metodo_pago" Multiplicity="*" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="0..1" />
+    <End Role="Metodo_pago" Type="Self.Metodo_pago" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Carrito">
         <PropertyRef Name="Id_carrito" />
@@ -261,8 +199,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Subcategoria_Categoria">
-    <End Type="MenajedbModel.Categoria" Role="Categoria" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Categoria">
         <PropertyRef Name="Id_categoria" />
@@ -273,8 +211,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_metodopago_Debito">
-    <End Type="MenajedbModel.Debito" Role="Debito" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Metodo_pago" Role="Metodo_pago" Multiplicity="*" />
+    <End Role="Debito" Type="Self.Debito" Multiplicity="0..1" />
+    <End Role="Metodo_pago" Type="Self.Metodo_pago" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Debito">
         <PropertyRef Name="Cod_deposito" />
@@ -285,8 +223,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Despacho_Direccion">
-    <End Type="MenajedbModel.Direccion" Role="Direccion" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Despacho" Role="Despacho" Multiplicity="*" />
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+    <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Direccion">
         <PropertyRef Name="Id_direccion" />
@@ -297,8 +235,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Despacho_Ventas">
-    <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Despacho" Role="Despacho" Multiplicity="*" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ventas">
         <PropertyRef Name="Id_ventas" />
@@ -309,8 +247,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Usuarios_Empresacliente">
-    <End Type="MenajedbModel.Empresa_cliente" Role="Empresa_cliente" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <End Role="Empresa_cliente" Type="Self.Empresa_cliente" Multiplicity="0..1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Empresa_cliente">
         <PropertyRef Name="Id_empresacliente" />
@@ -321,8 +259,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Mensaje_consulta_Usuarios">
-    <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Mensaje_consulta" Role="Mensaje_consulta" Multiplicity="*" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Mensaje_consulta" Type="Self.Mensaje_consulta" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
         <PropertyRef Name="Rut" />
@@ -333,8 +271,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Producto_Subcategoria">
-    <End Type="MenajedbModel.Subcategoria" Role="Subcategoria" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Producto" Role="Producto" Multiplicity="*" />
+    <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="0..1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Subcategoria">
         <PropertyRef Name="Id_subcategoria" />
@@ -345,8 +283,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Ventas_Usuarios">
-    <End Type="MenajedbModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
-    <End Type="MenajedbModel.Ventas" Role="Ventas" Multiplicity="*" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
         <PropertyRef Name="Rut" />
@@ -356,4 +294,64 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="MenajedbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Banco_menaje" EntityType="Self.Banco_menaje" />
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Contacto" EntityType="Self.Contacto" />
+    <EntitySet Name="Debito" EntityType="Self.Debito" />
+    <EntitySet Name="Despacho" EntityType="Self.Despacho" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+    <EntitySet Name="Empresa_cliente" EntityType="Self.Empresa_cliente" />
+    <EntitySet Name="Mensaje_consulta" EntityType="Self.Mensaje_consulta" />
+    <EntitySet Name="Metodo_pago" EntityType="Self.Metodo_pago" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Subcategoria" EntityType="Self.Subcategoria" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+    <AssociationSet Name="FK_Debito_Bancomenaje" Association="Self.FK_Debito_Bancomenaje">
+      <End Role="Banco_menaje" EntitySet="Banco_menaje" />
+      <End Role="Debito" EntitySet="Debito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carrito_Ventas" Association="Self.FK_Carrito_Ventas">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK_metodopago_Carrito" Association="Self.FK_metodopago_Carrito">
+      <End Role="Carrito" EntitySet="Carrito" />
+      <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subcategoria_Categoria" Association="Self.FK_Subcategoria_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_metodopago_Debito" Association="Self.FK_metodopago_Debito">
+      <End Role="Debito" EntitySet="Debito" />
+      <End Role="Metodo_pago" EntitySet="Metodo_pago" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Despacho_Direccion" Association="Self.FK_Despacho_Direccion">
+      <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Despacho" EntitySet="Despacho" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Despacho_Ventas" Association="Self.FK_Despacho_Ventas">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="Despacho" EntitySet="Despacho" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Empresacliente" Association="Self.FK_Usuarios_Empresacliente">
+      <End Role="Empresa_cliente" EntitySet="Empresa_cliente" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensaje_consulta_Usuarios" Association="Self.FK_Mensaje_consulta_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Mensaje_consulta" EntitySet="Mensaje_consulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Producto_Subcategoria" Association="Self.FK_Producto_Subcategoria">
+      <End Role="Subcategoria" EntitySet="Subcategoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Ventas" EntitySet="Ventas" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

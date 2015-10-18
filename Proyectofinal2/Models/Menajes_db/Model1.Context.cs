@@ -13,10 +13,10 @@ namespace Proyectofinal2.Models.Menajes_db
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MenajedbEntities : DbContext
+    public partial class MenajedbEntities1 : DbContext
     {
-        public MenajedbEntities()
-            : base("name=MenajedbEntities")
+        public MenajedbEntities1()
+            : base("name=MenajedbEntities1")
         {
         }
     

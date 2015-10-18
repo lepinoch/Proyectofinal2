@@ -49,7 +49,7 @@ namespace Proyectofinal2.Controllers.db_categoria
             try
             {
 
-                MenajedbEntities ctx = new MenajedbEntities();
+                MenajedbEntities1 ctx = new MenajedbEntities1();
 
 
 
@@ -58,7 +58,6 @@ namespace Proyectofinal2.Controllers.db_categoria
                 pro.Id_categoria = Int16.Parse(p["Id_categoria"]);
                 pro.Nombre_categoria = (p["Nombre_categoria"]);
                 pro.Tipo = (p["Tipo"]);
-                pro.Cantidad = Int16.Parse(p["Cantidad"]);
                 
                 
                 CategoriasDAL DAL = new CategoriasDAL();

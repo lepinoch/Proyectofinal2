@@ -38,7 +38,7 @@ namespace Proyectofinal2.Controllers.db_producto
     public FileContentResult GetImage(int Id_producto) 
         {
 
-            MenajedbEntities db = new MenajedbEntities();
+            MenajedbEntities1 db = new MenajedbEntities1();
             Producto pro = db.Producto.FirstOrDefault(c => c.Id_producto == Id_producto);
           if (pro != null)
                { 
@@ -80,17 +80,17 @@ namespace Proyectofinal2.Controllers.db_producto
         {
          
            
-                MenajedbEntities ctx = new MenajedbEntities();
+                MenajedbEntities1 ctx = new MenajedbEntities1();
 
                 if (ModelState.IsValid)
                 {
                     Producto pro = new Producto();
 
                     pro.Nombre = p["Nombre"];
-                    pro.Precio = Int16.Parse(p["Precio"]);
-                    pro.Stock = Int16.Parse(p["Stock"]);
+                    pro.Precio = Int32.Parse(p["Precio"]);
+                    pro.Stock = Int32.Parse(p["Stock"]);
                     pro.Descripcion = (p["Descripcion"]);
-                    pro.Id_subcategoria = Int16.Parse(p["Id_subcategoria"]);
+                    pro.Id_subcategoria = Int32.Parse(p["Id_subcategoria"]);
                     if (imagen != null)
                     {
                         pro.N_imagen = imagen.ContentType;

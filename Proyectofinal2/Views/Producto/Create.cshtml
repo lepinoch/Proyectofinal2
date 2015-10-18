@@ -10,61 +10,62 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <h2>
+        <fieldset>
+            <legend>Producto</legend>
 
-    <fieldset>
-        <legend>Producto</legend>
 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Nombre)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Nombre)
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Nombre)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Nombre)
-            @Html.ValidationMessageFor(model => model.Nombre)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Descripcion)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Descripcion)
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Descripcion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Descripcion)
-            @Html.ValidationMessageFor(model => model.Descripcion)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Stock)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Stock)
+                @Html.ValidationMessageFor(model => model.Stock)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Stock)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Stock)
-            @Html.ValidationMessageFor(model => model.Stock)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Precio)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Precio)
+                @Html.ValidationMessageFor(model => model.Precio)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Precio)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Precio)
-            @Html.ValidationMessageFor(model => model.Precio)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Id_subcategoria)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Id_subcategoria)
+                @Html.ValidationMessageFor(model => model.Id_subcategoria)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Id_subcategoria)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Id_subcategoria)
-            @Html.ValidationMessageFor(model => model.Id_subcategoria)
-        </div>
+            <div class="editor-field">
 
-        <div class="editor-field">
+                <input type="file" name="imagen" />
 
-            <input type="file" name="imagen" /> 
+            </div>
 
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    </h2>
 }
 
 <div>

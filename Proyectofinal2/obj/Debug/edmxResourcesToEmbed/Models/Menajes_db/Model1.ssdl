@@ -27,7 +27,6 @@
     <Property Name="Id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre_categoria" Type="varchar" MaxLength="50" />
     <Property Name="Tipo" Type="varchar" MaxLength="50" />
-    <Property Name="Cantidad" Type="int" />
   </EntityType>
   <EntityType Name="Contacto">
     <Key>
@@ -114,8 +113,7 @@
     <Key>
       <PropertyRef Name="Id_subcategoria" />
     </Key>
-    <Property Name="Id_subcategoria" Type="int" Nullable="false" />
-    <Property Name="Cantidad" Type="int" />
+    <Property Name="Id_subcategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="50" />
     <Property Name="Id_categoria" Type="int" />
   </EntityType>

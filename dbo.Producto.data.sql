@@ -1,0 +1,13 @@
+﻿SET IDENTITY_INSERT [dbo].[Producto] ON
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (15, N'Individual', <Binary Data>, N'Individual', 15, 3000, 17, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (17, N'Fuente de Ensalada', <Binary Data>, N'Fuente de Ensalada', 15, 2500, 16, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (18, N'Mantel', <Binary Data>, N'Mantel de 150 x 250', 15, 11500, 18, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (19, N'Baterias Ollas y Sartenes', <Binary Data>, N'Pack de Ollas y Sartenes', 15, 35000, 21, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (20, N'Set de Cuchillos', <Binary Data>, N'3 Cuchillos más barra de magneto', 15, 8990, 20, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (23, N'Cortina de Baño Estampada', <Binary Data>, N'Cortina de Baño Estampada', 15, 12990, 22, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (24, N'Almohada de Plumas', <Binary Data>, N'Almohada de Plumas 50x90 cm', 15, 9990, 25, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (25, N'Cobertor MicroFibra', <Binary Data>, N'2 plazas', 15, 11990, 26, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (26, N'CubreCama Bonito', <Binary Data>, N'CubreCama Bonito ', 15, 25990, 27, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (27, N'Pokemon GB', <Binary Data>, N'Juego Pokemon', 15, 25990, 17, N'image/jpeg')
+INSERT INTO [dbo].[Producto] ([Id_producto], [Nombre], [Imagen], [Descripcion], [Stock], [Precio], [Id_subcategoria], [N_imagen]) VALUES (28, N'Paños de Cocina', <Binary Data>, N'Juego de Paños ', 15, 1500, 19, N'image/jpeg')
+SET IDENTITY_INSERT [dbo].[Producto] OFF

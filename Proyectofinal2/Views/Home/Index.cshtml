@@ -28,39 +28,43 @@
                     <div class="carousel-inner">
                         <div class="item active">
                             <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <h1><span>O</span>FERTA</h1>
+                                <h2>Paños de Cocina</h2>
+                                <p>Paños de cocina de algodón con diseño estampado, hecho en Chile. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                                
+                                <img src="~/Content/images/layout/3102211000910_1_big.jpg"  width="350" height="300" />
+           
+                                @*<img src="images/home/pricing.png" class="pricing" alt="" />*@
                             </div>
                         </div>
                         <div class="item">
                             <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>100% Responsive Design</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <h1><span>O</span>FERTA</h1>
+                                <h2>Tetera 12 Litros</h2>
+                                <p>Tetera de 12 litros de aluminio con diseño metalico, hecho en Chile. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                                <img src="~/Content/images/layout/tetera 484x441.jpg"  width="350" height="300" />
+                                @*<img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />*@
+                                @*<img src="images/home/pricing.png" class="pricing" alt="" />*@
                             </div>
                         </div>
 
                         <div class="item">
                             <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free Ecommerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <h1><span>O</span>FERTA</h1>
+                                <h2>Ponchera 24 piezas</h2>
+                                <p>Ponchera de 36 litros de cristal, hecho en Chile. </p>
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                <img src="images/home/pricing.png" class="pricing" alt="" />
+                                <img src="~/Content/images/layout/Ponchera 484x441.png"  width="350" height="300" />
+                                @*<img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />*@
+                                @*<img src="images/home/pricing.png" class="pricing" alt="" />*@
                             </div>
                         </div>
 
@@ -121,13 +125,13 @@
 
                                         <ul>
 
-                                            @foreach (var item2 in ViewBag.Subcategoria)
-                                            {
-                                                if (item.Id_categoria == item2.Id_categoria)
-                                                {
-                                                    <h2> <li>@item2.Nombre</li> </h2>
-                                                }
-                                            }
+                                                                                                                                    @foreach (var item2 in ViewBag.Subcategoria)
+                                                                                                                                    {
+                                                                                                                                        if (item.Id_categoria == item2.Id_categoria)
+                                                                                                                                        {
+                                                                                                                                              <li><h2>@item2.Nombre</h2></li> 
+                                                                                                                                        }
+                                                                                                                                    }
                                         </ul>
 
                                     </div>
@@ -210,7 +214,9 @@
                     <!--features_items-->
 
                     <h2 class="title text-center">Listado Productos</h2>
-
+                @foreach(var producto in ViewBag.Producto)
+                    {
+                
                     <div class="col-sm-4">
 
                         <div class="product-image-wrapper">
@@ -219,17 +225,23 @@
 
                                 <div class="productinfo text-center">
 
-                                    <img src="images/shop/product12.jpg" alt="" />
+                                    @*<img src="images/shop/product12.jpg" alt="" />*@
+                                    @if (producto.Imagen != null)
+                                    {
+                                        <div style="margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;">
+                                            <img width="225" height="300"  src="@Url.Action("GetImage", "Producto", new { producto.Id_producto})" />
+                                        </div>
+                                    } 
+                                    <h2>@producto.Nombre</h2>
+                                    <h2>$ @producto.Precio</h2>
 
-                                    <h2>$56</h2>
-
-                                    <p>Easy Polo Black Edition</p>
-
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                           
+                                    @*<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>*@
+                               
 
                                 </div>
 
-                                <div class="product-overlay">
+                                @*<div class="product-overlay">
 
                                     <div class="overlay-content">
 
@@ -241,11 +253,11 @@
 
                                     </div>
 
-                                </div>
+                                </div>*@
 
                             </div>
 
-                            <div class="choose">
+                            @*<div class="choose">
 
                                 <ul class="nav nav-pills nav-justified">
 
@@ -255,13 +267,14 @@
 
                                 </ul>
 
-                            </div>
+                            </div>*@
 
                         </div>
 
                     </div>
+                    }
 
-                    <div class="col-sm-4">
+                    @*<div class="col-sm-4">
 
                         <div class="product-image-wrapper">
 
@@ -827,24 +840,24 @@
 
                         </div>
 
-                    </div>
+                    </div>*@
 
 
 
-                    <ul class="pagination">
-
-                        <li class="active"><a href="">1</a></li>
-
-                        <li><a href="">2</a></li>
-
-                        <li><a href="">3</a></li>
-
-                        <li><a href="">&raquo;</a></li>
-
-                    </ul>
+             
 
                 </div><!--features_items-->
+                <ul class="pagination">
 
+                    <li class="active"><a href="">1</a></li>
+
+                    <li><a href="">2</a></li>
+
+                    <li><a href="">3</a></li>
+
+                    <li><a href="">&raquo;</a></li>
+
+                </ul>
             </div>
 
         </div>

@@ -20,7 +20,6 @@ namespace Proyectofinal2.Models.Menajes_db
         }
     
         public int Id_subcategoria { get; set; }
-        public Nullable<int> Cantidad { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Id_categoria { get; set; }
     

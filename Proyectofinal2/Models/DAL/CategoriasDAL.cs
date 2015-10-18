@@ -13,7 +13,7 @@ namespace Proyectofinal2.Models.DAL
             
             try
             {
-                MenajedbEntities ctx = new MenajedbEntities();
+                MenajedbEntities1 ctx = new MenajedbEntities1();
 
                 ctx.Categoria.Add(c);
                 ctx.SaveChanges();
@@ -32,7 +32,7 @@ namespace Proyectofinal2.Models.DAL
 
         public List<Categoria> listar()
         {
-            MenajedbEntities ctx = new MenajedbEntities();
+            MenajedbEntities1 ctx = new MenajedbEntities1();
             var lista = (from o in ctx.Categoria
                          select o).ToList();
             return lista;

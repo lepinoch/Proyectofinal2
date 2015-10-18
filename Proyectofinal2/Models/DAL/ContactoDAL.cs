@@ -17,7 +17,7 @@ namespace Proyectofinal2.Models.DAL
 
         try
         {
-            MenajedbEntities ctx = new MenajedbEntities();
+            MenajedbEntities1 ctx = new MenajedbEntities1();
             ctx.Contacto.Add(con);
             ctx.SaveChanges();
 
